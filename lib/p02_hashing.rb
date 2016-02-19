@@ -4,7 +4,7 @@ end
 
 class Array
   def hash
-    hash_number = 1
+    hash_number = 2
     self.each_with_index do |num, idx|
       hash_number *= (num.hash + idx)
     end
@@ -22,7 +22,7 @@ end
 
 class Hash
   def hash
-    hash_number = 1
+    hash_number = 5
     hash_array = self.sort
     hash_array.each_with_index do |arr, idx|
       key = arr[0]
