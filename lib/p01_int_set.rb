@@ -92,10 +92,11 @@ class ResizingIntSet
   end
 
   def resize!
-    new_store = Array.new(num_buckets * 2) { Array.new }
-    flattened_store = @store.flatten
-    flattened_store.each do |num|
-      new_store.insert(num)
+    old_store = @store
+    @store = Array.new(num_buckets * 2) { Array.new }
+    @count = 0
+    old_store.flatten.each do |num|
+      insert(num)
     end
   end
 end
