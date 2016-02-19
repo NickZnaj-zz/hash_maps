@@ -13,12 +13,26 @@ class HashMap
   end
 
   def set(key, val)
+    key_hash = key.hash
+    bucket = key_hash % @store.count
+    if @store[bucket].include?(key)
+      @store[bucket].remove(key)
+      @store[bucket].insert(key, val)
+    else
+      @store[bucket].insert(key, val)
+    end
   end
 
   def get(key)
+    key_hash = key.hash
+    bucket = key_hash % @store.count
+    @store[bucket].get(key)
   end
 
   def delete(key)
+    key_hash = key.hash
+    bucket = key_hash % @store.count
+    @store[bucket].remove(key)
   end
 
   def each
